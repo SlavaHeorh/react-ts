@@ -2,13 +2,19 @@ import {IProduct} from "../models";
 import {useState} from "react";
 
 
+// интерфейс описания типов массива обьектов с типом IProduct в котором записаны все типы которые содержит массив
 interface ProductProps {
     product: IProduct
 }
 
-export function Product({product}: ProductProps) {
 
-    const [details, setDetails] = useState(false)
+
+export function Product({product}: ProductProps) { // передаю сразу products что ты не добавлять в начале props
+
+    const [details, setDetails] = useState(false) // состояние отображения кнопки
+
+    const btnBgClassName = details ? 'bg-yellow-400' : 'bg-blue-400'
+    const btnClasses = ['py-2 px-4 border', btnBgClassName]
 
     return (
         <div
@@ -18,15 +24,16 @@ export function Product({product}: ProductProps) {
             <p>{product.title}</p>
             <span className='font-bold'>{product.price}</span>
             <button
-                className='py-2 px-4 border bg-yellow-400'
+                className={btnClasses.join(' ')}
                 onClick={() => setDetails(!details)}
             >
-                Show Details
+                {details ? 'Hide Details' : 'Show Details'}
             </button>
 
             {details && <div>
-                    <p>{product.description}</p>
-                </div>
+                <p>{product.description}</p>
+                <p>Rate: <span style={{fontWeight: 600}}>{product.rating.rate}</span></p>
+            </div>
             }
 
         </div>
