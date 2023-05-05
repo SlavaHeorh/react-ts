@@ -9,7 +9,7 @@ export function useProducts() { // кастомный hook
     const [error, setError] = useState('')// состояние для ошибки
 
     function addProduct(product:IProduct) {
-        setProducts( prev => [...prev, product])
+        setProducts( prev => [product, ...prev])
     }
 
     async function fetchProducts() {  // асинхронная функция для
