@@ -8,6 +8,10 @@ export function useProducts() { // кастомный hook
     const [loading, setLoading] = useState(false) // состояние для подгрузки страницы
     const [error, setError] = useState('')// состояние для ошибки
 
+    function addProduct(product:IProduct) {
+        setProducts( prev => [...prev, product])
+    }
+
     async function fetchProducts() {  // асинхронная функция для
         try {
             setError('') // выполняется если нет ошибки
@@ -28,5 +32,5 @@ export function useProducts() { // кастомный hook
         fetchProducts()
     }, [])
 
-    return {products, error, loading}
+    return {products, error, loading, addProduct}
 }
