@@ -2,7 +2,7 @@
 // интерфейс описывающий типы массива обьектов products
 
 export interface IProduct {
-    id: number,
+    id?: number,
     title: string,
     price: number,
     description: string,
